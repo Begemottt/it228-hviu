@@ -4,7 +4,10 @@
   "description": "A first-person dungeon crawler made with React!",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "build": "webpack --mode development",
+    "start": "serve ./dist",
+    "watch": "webpack --watch --mode development"
   },
   "keywords": [
     "game",

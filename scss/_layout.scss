@@ -1,0 +1,159 @@
+html{
+    background-color: $black;
+}
+main{
+    width: 90vw;
+    height: 45vw;
+    margin: 5vh auto 0 auto;
+    // Grid stuff!
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 10% 30% 40% 20%;
+    grid-template-areas:
+        "header header header header map"
+        "view view view view map"
+        "view view view view verbs"
+        "char log log log move";
+}
+#header_menus{
+    grid-area: header;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    section{
+        width: 25%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        align-content: center;
+        p{
+            margin: auto;
+            text-align: center;
+        }
+        button{
+            height: 100%;
+            width: 100%;
+            background-color: $grey;
+            color: $black;
+        }
+    }
+}
+#map{
+    grid-area: map;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    section#map_grid{
+        height: 80%;
+        width: 80%;
+        background-color: $grey;
+        margin: auto;
+    }
+    section#map_caption{
+        background-color: $white;
+        p{
+            color: $black;
+        }
+        text-align: center;
+    }
+}
+// The Dungeon View
+// TODO: Figure out the CSS 3D transform to make the view properly rendered
+#view{
+    grid-area: view;
+    section{
+        background-color: $grey;
+        border: 1px solid $black;
+    }
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    // Individual sections for the dungeon view
+    // TODO: Get these situated correctly in 3D, and work out transitions!!
+    #ceiling{
+        width: 100%;
+        height: 35%;
+    }
+    #left_wall{
+        width: 40%;
+        height: 30%;
+    }
+    #back_wall{
+        width: 20%;
+        height: 30%;
+    }
+    #right_wall{
+        width: 40%;
+        height: 30%;
+    }
+    #floor{
+        width: 100%;
+        height: 35%;
+    }
+}
+#verbs{
+    grid-area: verbs;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+    button{
+        background-color: $grey;
+        color: $white;
+        width: 100%;
+        padding: 4px;
+    }
+}
+#character_portrait{
+    grid-area: char;
+}
+// The Log
+#log_view{
+    grid-area: log;
+    overflow: hidden;
+    #log{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        overflow: hidden;
+        margin: auto;
+        padding: 4px;
+        width: 95%;
+        height: 95%;
+        .log_line{
+            height: 20%;
+        }
+    }
+}
+#move_buttons{
+    grid-area: move;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    button, div{
+        width: 30%;
+        height: 45%;
+    }
+    button{
+        background-color: $white;
+        color: $black;
+        span{
+            display: inline-block;
+            &#up_arrow{
+                transform: rotate(270deg);
+            }
+            &#left_arrow{
+                transform: rotate(180deg);
+            }
+            &#down_arrow{
+                transform: rotate(90deg);
+            }
+            &#right_arrow{
+                transform: rotate(0deg);
+            }
+
+        }
+    }
+}
