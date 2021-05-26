@@ -34,10 +34,9 @@ dd {
 
 /* Set core body defaults */
 body {
-  min-height: 100vh;
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
-  line-height: 1.5;
+  line-height: 1;
 }
 
 /* Remove list styles on ul, ol elements with a class attribute */
@@ -85,6 +84,24 @@ article {
   padding: 4px;
 }
 
+h1, p {
+  color: #ffffff;
+  font-family: "Xanh Mono", monospace;
+}
+
+p {
+  font-size: 2vh;
+}
+
+button {
+  font-family: "Xanh Mono", monospace;
+  font-size: 3vh;
+}
+
+.line_number {
+  color: #888888;
+}
+
 html {
   background-color: #000000;
 }
@@ -97,6 +114,25 @@ main {
   grid-template-columns: 20% 20% 20% 20% 20%;
   grid-template-rows: 10% 30% 40% 20%;
   grid-template-areas: "header header header header map" "view view view view map" "view view view view verbs" "char log log log move";
+}
+
+#loading {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-image: url("../images/dither_white.png");
+}
+#loading h1 {
+  font-size: 30vh;
+  font-family: "Xanh Mono", monospace;
+  color: #000000;
+}
+
+article {
+  position: relative;
+  top: 0px;
+  right: 0px;
+  z-index: 0;
 }
 
 #header_menus {
@@ -138,6 +174,7 @@ main {
 }
 #map section#map_caption {
   background-color: #ffffff;
+  padding: 1vh;
   text-align: center;
 }
 #map section#map_caption p {
@@ -194,20 +231,83 @@ main {
 
 #log_view {
   grid-area: log;
-  overflow: hidden;
+  overflow: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 #log_view #log {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: start;
   overflow: hidden;
-  margin: auto;
+  margin: 0 4px 0 4px;
   padding: 4px;
-  width: 95%;
-  height: 95%;
+  width: 90%;
+  height: 100%;
+  border-right: 1px solid #ffffff;
 }
 #log_view #log .log_line {
   height: 20%;
+}
+#log_view #log .log_line:nth-child(even) {
+  background-color: #222;
+}
+#log_view #log .initial {
+  position: relative;
+  right: 4px;
+  bottom: 4px;
+}
+#log_view #log .initial p {
+  font-size: 2.5vh;
+}
+#log_view #log .initial .current_line {
+  font-size: 3vh;
+  color: #ffffff;
+}
+
+#log_button {
+  width: 10%;
+  height: 95%;
+  margin: auto;
+  background-color: #444;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+}
+
+#full_log_window {
+  position: fixed;
+  top: 20px;
+  left: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border: 1px solid #444;
+  overflow: auto;
+  z-index: 100;
+  height: 80vh;
+  width: 50vw;
+}
+#full_log_window .log_line {
+  width: 100%;
+  padding: 4px 0 4px 8px;
+}
+#full_log_window .log_line:nth-child(odd) {
+  background-color: #222;
+}
+
+button#close_log {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  top: 20px;
+  left: 50vw;
+  text-align: center;
+  padding: auto;
+  z-index: 101;
+  color: black;
+  background-color: red;
 }
 
 #move_buttons {
@@ -217,7 +317,7 @@ main {
   flex-wrap: wrap;
   justify-content: space-around;
 }
-#move_buttons button, #move_buttons div {
+#move_buttons button, #move_buttons .empty {
   width: 30%;
   height: 45%;
 }
@@ -241,14 +341,115 @@ main {
   transform: rotate(0deg);
 }
 
-h1, p {
+#debug {
+  position: relative;
+  top: 20px;
+  width: 80vw;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+#debug button {
+  color: #ffffff;
+  background-color: #000000;
+  border: 2px solid #ffffff;
+  font-family: "Xanh Mono", monospace;
+  font-size: 3vh;
+  flex-grow: 1;
+}
+
+#log_view {
+  grid-area: log;
+  overflow: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#log_view #log {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  overflow: hidden;
+  margin: 0 4px 0 4px;
+  padding: 4px;
+  width: 90%;
+  height: 100%;
+  border-right: 1px solid #ffffff;
+}
+#log_view #log .log_line {
+  height: 20%;
+}
+#log_view #log .log_line:nth-child(even) {
+  background-color: #222;
+}
+#log_view #log .initial {
+  position: relative;
+  right: 4px;
+  bottom: 4px;
+}
+#log_view #log .initial p {
+  font-size: 2.5vh;
+}
+#log_view #log .initial .current_line {
+  font-size: 3vh;
   color: #ffffff;
 }
 
-p {
-  font-size: 2vh;
+#log_button {
+  width: 10%;
+  height: 95%;
+  margin: auto;
+  background-color: #444;
+  border: 2px solid #ffffff;
+  color: #ffffff;
 }
 
-button {
-  font-size: 3vh;
+#full_log_window {
+  position: fixed;
+  top: 20px;
+  left: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border: 1px solid #444;
+  overflow: auto;
+  z-index: 100;
+  height: 80vh;
+  width: 50vw;
+}
+#full_log_window .log_line {
+  width: 100%;
+  padding: 4px 0 4px 8px;
+}
+#full_log_window .log_line:nth-child(odd) {
+  background-color: #222;
+}
+
+button#close_log {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  top: 20px;
+  left: 50vw;
+  text-align: center;
+  padding: auto;
+  z-index: 101;
+  color: black;
+  background-color: red;
+}
+
+div.blur {
+  display: none;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 100%;
+  width: 100%;
+  z-index: 50;
+  background-image: url("../images/dither_black.png");
+}
+div.blur.active {
+  display: block;
 }

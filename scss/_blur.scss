@@ -1,0 +1,13 @@
+div.blur{
+    display: none;
+    &.active{
+        display: block;
+    }
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: 50;
+    background-image: url("../images/dither_black.png");
+}

@@ -1,0 +1,25 @@
+// All styles relating to text
+// [ [ [ Fonts ] ] ]
+@mixin font_main{
+    font-family: 'Xanh Mono', monospace;
+}
+@mixin font_numbers{
+    font-family: 'VT323', monospace;
+}
+// [ [ [ General text styles ] ] ]
+h1, p{
+    color: $white;
+    @include font_main;
+}
+p{
+    font-size: 2vh;
+}
+button{
+    @include font_main;
+    font-size: 3vh;
+}
+// [ [ [ Specific text styles ] ] ]
+.line_number{
+    color: $grey;
+}
+

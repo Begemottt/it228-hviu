@@ -2,6 +2,13 @@ import '../scss/styles.scss';
 import html from '../index.html';
 import React from "react";
 import ReactDOM from "react-dom";
+import GameControl from './components/GameControl';
 // import anime from 'animejs';
-import { printOut } from './components/printout';
 
+const rootElement = document.getElementById("main");
+ReactDOM.render(
+    <React.StrictMode>
+        <GameControl />
+    </React.StrictMode>,
+    rootElement
+)
