@@ -2,6 +2,12 @@
 import React, { useState } from 'react';
 import Log from "./Log";
 import FullLog from "./FullLog";
+import testMapData from "../data/test_map.json";
+import loadMap from "./loadMap";
+import movePlayer from "./MovePlayer";
+import getSquareData from "./GetSquareData";
+import DrawMap from "./DrawMap";
+import DrawView from "./DrawView";
 
 export default function GameControl(){
     // Functions for the log! Just toss a string into writeLog and it'll show up there.
@@ -28,48 +34,104 @@ export default function GameControl(){
         changeLog(!logOpen);
         Blur("full");
     }
-    // Let's test out some map data!
-    const mapData = [
-        [{id:1},{id:2},{id:3},{id:4},{id:5}],
-        [{id:6},{id:7},{id:8},{id:9},{id:10}],
-        [{id:11},{id:12},{id:13},{id:14},{id:15}],
-        [{id:16},{id:17},{id:18},{id:19},{id:20}],
-        [{id:21},{id:22},{id:23},{id:24},{id:25}],
-    ];
-    const printMap = (data) => {console.table(data)};
+    // Map functions for testing
     const checkPos = (data) => {
         console.log(
-            "The player is at " + playerPos.x + ", " + playerPos.y + " and the number in that square is: " + data[playerPos.x][playerPos.y].id
+            "The player is at " + playerPosition.x + ", " + playerPosition.y + " facing " + 
+                playerPosition.facing + " and the number in that square is: " + data[playerPosition.x][playerPosition.y].id
         )
     };
     const Look = (data, direction) => {
         let x = 0, y = 0;
         switch(direction){
             case "north":
-                x = (playerPos.x);
-                y = (playerPos.y - 1);
+                x = (playerPosition.x);
+                y = (playerPosition.y - 1);
             break;
             case "east":
-                x = (playerPos.x + 1);
-                y = (playerPos.y);
+                x = (playerPosition.x + 1);
+                y = (playerPosition.y);
             break;
             case "south":
-                x = (playerPos.x);
-                y = (playerPos.y + 1);
+                x = (playerPosition.x);
+                y = (playerPosition.y + 1);
             break;
             case "west":
-                x = (playerPos.x - 1);
-                y = (playerPos.y);
+                x = (playerPosition.x - 1);
+                y = (playerPosition.y);
             break;
         }
-        console.log("You look "+ direction +" and see the number " + data[y][x].id + " written on the ground!");
+        let myReturn = "You look "+ direction +" and see the number " + data[y][x].id + " written on the ground!";
+        return myReturn;
     }
 
-    var playerPos = {
-        x:2,
-        y:2,
-        facing: "north"
-    };
+    // Functions for handling the map
+    const [playerPosition, changePosition] = useState({
+        x:0,
+        y:0,
+        facing: "east"
+    })
+    var testMap = [[],[],[],[],[]];
+    const mapSize = 5;
+    testMap = loadMap(testMap, testMapData, mapSize);
+    // Function for handling movement and turning. Very messy! Updates the playerPosition state
+    const Movement = (direction) => {
+        let data = {};
+        switch(direction){
+            case "up":
+                data = movePlayer(testMap, playerPosition, "forwards", mapSize);
+                changePosition({x:data.x, y:data.y, facing:playerPosition.facing});
+                addLog(data.message);
+            break;
+            case "down":
+                data = movePlayer(testMap, playerPosition, "backwards", mapSize);
+                changePosition({x:data.x, y:data.y, facing:playerPosition.facing});
+                addLog(data.message);
+            break;
+            case "left":
+                switch(playerPosition.facing){
+                    case "north":
+                        changePosition({x:playerPosition.x, y:playerPosition.y, facing:"west"});
+                        addLog("You turn to the left and face west.");
+                    break;
+                    case "east":
+                        changePosition({x:playerPosition.x, y:playerPosition.y, facing:"north"});
+                        addLog("You turn to the left and face north.");
+                    break;
+                    case "south":
+                        changePosition({x:playerPosition.x, y:playerPosition.y, facing:"east"});
+                        addLog("You turn to the left and face east.");
+                    break;
+                    case "west":
+                        changePosition({x:playerPosition.x, y:playerPosition.y, facing:"south"});
+                        addLog("You turn to the left and face south.");
+                    break;
+                };
+            break;
+            case "right":
+                switch(playerPosition.facing){
+                    case "north":
+                        changePosition({x:playerPosition.x, y:playerPosition.y, facing:"east"});
+                        addLog("You turn to the right and face east.");
+                    break;
+                    case "east":
+                        changePosition({x:playerPosition.x, y:playerPosition.y, facing:"south"});
+                        addLog("You turn to the right and face south.");
+                    break;
+                    case "south":
+                        changePosition({x:playerPosition.x, y:playerPosition.y, facing:"west"});
+                        addLog("You turn to the right and face west.");
+                    break;
+                    case "west":
+                        changePosition({x:playerPosition.x, y:playerPosition.y, facing:"north"});
+                        addLog("You turn to the right and face north.");
+                    break;
+                };
+                
+            break;
+        }
+    }
+
 
     return(
         <>
@@ -90,17 +152,23 @@ export default function GameControl(){
             <div id="header_blur" className="blur"></div>
         </article>
         <article id="map">
-            <section id="map_grid"></section>
+            <section id="map_grid">
+                < DrawMap
+                    map={testMap}
+                    position={playerPosition}
+                    size={mapSize}
+                />
+            </section>
             <section id="map_caption">
                 <p>Floor 1</p>
             </section>
         </article>
         <article id="view">
-            <section id="ceiling"></section>
-            <section id="left_wall"></section>
-            <section id="back_wall"></section>
-            <section id="right_wall"></section>
-            <section id="floor"></section>
+            < DrawView
+                map={testMap}
+                position={playerPosition}
+                size={mapSize}
+            />
             <div id="dungeon_blur" className="blur"></div>
         </article>
         <article id="verbs">
@@ -116,18 +184,19 @@ export default function GameControl(){
         </article>
         <article id="move_buttons">
             <div className="empty"></div>
-            <button id="up" onClick={()=> Look(mapData, "north")}><span id="up_arrow">&gt;</span></button>
+            <button id="up" onClick={()=> Movement("up")}><span id="up_arrow">&gt;</span></button>
             <div className="empty"></div>
-            <button id="left" onClick={()=> Look(mapData, "west")}><span id="left_arrow">&gt;</span></button>
-            <button id="down" onClick={()=> Look(mapData, "south")}><span id="down_arrow">&gt;</span></button>
-            <button id="right" onClick={()=> Look(mapData, "east")}><span id="right_arrow">&gt;</span></button>
+            <button id="left" onClick={()=> Movement("left")}><span id="left_arrow">&gt;</span></button>
+            <button id="down" onClick={()=> Movement("down")}><span id="down_arrow">&gt;</span></button>
+            <button id="right" onClick={()=> Movement("right")}><span id="right_arrow">&gt;</span></button>
             <div id="move_blur" className="blur"></div>
         </article>
         <div id="full_blur" className="blur"></div>
         </main>
         <article id="debug">
-            <button onClick={()=> printMap(mapData)}>Print Map Data</button>
-            <button onClick={()=> checkPos(mapData)}>Check Position</button>
+            <button onClick={()=> console.table(testMap)}>Check Map Data</button>
+            <button onClick={()=> checkPos(testMap)}>Check Position</button>
+            <button onClick={()=> console.log(getSquareData(testMap, playerPosition.x, playerPosition.y, mapSize))}>Check Square</button>
         </article>
         {/* Windows */}
         {logOpen

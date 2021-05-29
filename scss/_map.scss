@@ -1,0 +1,62 @@
+#map{
+    grid-area: map;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    z-index: 10;
+    section#map_grid{
+        height: 80%;
+        width: 80%;
+        background-color: $grey;
+        margin: auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        text-align: center;
+        padding: 4px;
+        div{
+            background-color: $black;
+            width: 19%;
+            height: 19%;
+                &.wall{
+                    background-color: $black;
+                }
+                &.floor{
+                    background-color: $white;
+                }
+                &.door{
+                    background-color: #ff0000;
+                }
+                &.north{
+                    background: url('../images/arrow_up.svg'), $white;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+                &.south{
+                    background: url('../images/arrow_down.svg'), $white;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+                &.east{
+                    background: url('../images/arrow_right.svg'), $white;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+                &.west{
+                    background: url('../images/arrow_left.svg'), $white;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+        }
+    }
+    section#map_caption{
+        background-color: $white;
+        padding: 1vh;
+        p{
+            color: $black;
+        }
+        text-align: center;
+    }
+}
