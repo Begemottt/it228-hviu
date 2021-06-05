@@ -159,6 +159,11 @@ article {
   background-color: #888888;
   color: #000000;
 }
+#header_menus section#logo {
+  background: url("../images/game_logo.svg") #ffffff;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
 #map {
   grid-area: map;
@@ -348,6 +353,14 @@ article {
 #character_portrait {
   grid-area: char;
 }
+#character_portrait p {
+  display: block;
+  font-size: 3vh;
+  color: #888888;
+  margin: auto;
+  border: 1px solid #ffffff;
+  padding: 12px;
+}
 
 #log_view {
   grid-area: log;
@@ -377,10 +390,13 @@ article {
 #log_view #log .initial {
   position: relative;
   right: 4px;
-  bottom: 4px;
+  bottom: 16px;
 }
 #log_view #log .initial p {
   font-size: 2.5vh;
+  background-color: #000000;
+  border: 1px solid #ffffff;
+  padding: 4px;
 }
 #log_view #log .initial .current_line {
   font-size: 3vh;
@@ -394,6 +410,17 @@ article {
   background-color: #444;
   border: 2px solid #ffffff;
   color: #ffffff;
+  box-shadow: 4px solid #888888;
+}
+#log_button:hover {
+  background-color: #000000;
+  border: 2px dotted #ffffff;
+}
+#log_button:active {
+  border: 2px solid #000000;
+  background-color: #ffffff;
+  color: #000000;
+  box-shadow: 2px solid #888888;
 }
 
 #full_log_window {
@@ -446,6 +473,14 @@ button#close_log {
 #move_buttons button {
   background-color: #ffffff;
   color: #000000;
+}
+#move_buttons button:hover {
+  background-color: #888888;
+}
+#move_buttons button:active {
+  transform: translateY(2px);
+  background-color: #000000;
+  color: #ffffff;
 }
 #move_buttons button span {
   display: inline-block;
@@ -510,10 +545,13 @@ button#close_log {
 #log_view #log .initial {
   position: relative;
   right: 4px;
-  bottom: 4px;
+  bottom: 16px;
 }
 #log_view #log .initial p {
   font-size: 2.5vh;
+  background-color: #000000;
+  border: 1px solid #ffffff;
+  padding: 4px;
 }
 #log_view #log .initial .current_line {
   font-size: 3vh;
@@ -527,6 +565,17 @@ button#close_log {
   background-color: #444;
   border: 2px solid #ffffff;
   color: #ffffff;
+  box-shadow: 4px solid #888888;
+}
+#log_button:hover {
+  background-color: #000000;
+  border: 2px dotted #ffffff;
+}
+#log_button:active {
+  border: 2px solid #000000;
+  background-color: #ffffff;
+  color: #000000;
+  box-shadow: 2px solid #888888;
 }
 
 #full_log_window {
@@ -628,6 +677,14 @@ div.blur.active {
   transform: translateX(-650px);
   transition: transform 500ms;
 }
+#splash article#greeting section#splash_logo {
+  background: url("../images/game_logo_white.svg") #000000;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 12px;
+  width: 90%;
+  height: 10vh;
+}
 #splash article#greeting.active {
   z-index: 100;
   transform: translateX(20px);
@@ -661,4 +718,116 @@ div.blur.active {
   color: #ffffff;
   border: 4px solid #ffffff;
   box-shadow: 8px 8px #888888;
+}
+
+article#dialog {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  width: 800px;
+  height: 800px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  background-color: #000000;
+  border: 2px solid #888888;
+  box-shadow: 8px 8px 0px #000000;
+}
+article#dialog section#portrait {
+  z-index: 101;
+  height: 90%;
+  width: 45%;
+  border: 1px solid #ffffff;
+  box-shadow: 4px 4px 0px #888888;
+  padding: 1px;
+  margin: 8px;
+  position: relative;
+  left: 0;
+  top: 0;
+  text-align: center;
+}
+article#dialog section#portrait img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  aspect-ratio: 1/2;
+}
+article#dialog section#portrait h2 {
+  display: block;
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 4vh;
+  font-family: "Xanh Mono", monospace;
+  color: #ffffff;
+  margin: 12px;
+  text-shadow: 4px 4px 2px #000000, -4px -4px 2px #000000;
+  z-index: 102;
+}
+article#dialog section#message {
+  z-index: 102;
+  height: 80%;
+  width: 50%;
+  border: 2px solid #888888;
+  box-shadow: 2px 2px 0px #888888;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+article#dialog section#message section#line {
+  height: 50%;
+  width: 100%;
+}
+article#dialog section#message section#line p {
+  font-size: 3vh;
+  font-family: "Xanh Mono", monospace;
+  color: #ffffff;
+  margin: 16px;
+}
+article#dialog section#message section#buttons {
+  height: 45%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+}
+article#dialog section#message section#buttons button {
+  z-index: 103;
+  width: 95%;
+  height: 20%;
+  border: 1px solid #ffffff;
+  display: block;
+  margin-bottom: 8px;
+  transform: translateX(0px);
+  transition: transform 200ms;
+}
+article#dialog section#message section#buttons button:hover {
+  background-color: #888888;
+  transform: translateX(8px);
+  transition: transform 200ms;
+}
+article#dialog section#message section#buttons button:active {
+  color: #ffffff;
+  background-color: #000000;
+  border: 1px dotted #000000;
+}
+article#dialog button#close {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  width: 100px;
+  height: 40px;
+  text-align: center;
+  background: red;
+  color: #000000;
 }

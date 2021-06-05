@@ -1,0 +1,119 @@
+article#dialog{
+    // Positioning
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    // Window size
+    width: 800px;
+    height: 800px;
+    // Flexbox stuff!
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    // Misc. style
+    background-color: $black;
+    border: 2px solid $grey;
+    box-shadow: 8px 8px 0px $black;
+
+    section#portrait{
+        z-index: 101;
+        height: 90%;
+        width: 45%;
+        border: 1px solid $white;
+        box-shadow: 4px 4px 0px $grey;
+        padding: 1px;
+        margin: 8px;
+        position: relative;
+        left: 0;
+        top: 0;
+        text-align: center;
+        img{
+            width: 100%;
+            height: 100%;
+            display: block;
+            aspect-ratio: 1/2;
+        }
+        h2{
+            display: block;
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 4vh;
+            @include font_main;
+            color: $white;
+            margin: 12px;
+            text-shadow: 4px 4px 2px $black, -4px -4px 2px $black;
+            z-index: 102;
+        }
+    }
+    section#message{
+        z-index: 102;
+        height: 80%;
+        width: 50%;
+        border: 2px solid $grey;
+        box-shadow: 2px 2px 0px $grey;
+        // Flexbox stuff
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        align-content: center;
+        section#line{
+            height: 50%;
+            width: 100%;
+            p{
+                font-size: 3vh;
+                @include font_main;
+                color: $white;
+                margin: 16px;
+            }
+        }
+        section#buttons{
+            height: 45%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            align-content: center;
+            button{
+                z-index: 103;
+                width: 95%;
+                height: 20%;
+                border: 1px solid $white;
+                display: block;
+                margin-bottom: 8px;
+                transform: translateX(0px);
+                transition: transform 200ms;
+                &:hover{
+                    background-color: $grey;
+                    transform: translateX(8px);
+                    transition: transform 200ms;
+                }
+                &:active{
+                    color: $white;
+                    background-color: $black;
+                    border: 1px dotted $black;
+                }
+            }
+        }
+    }
+    
+    button#close{
+        position: absolute;
+        right: 4px;
+        top: 4px;
+        width: 100px;
+        height: 40px;
+        text-align: center;
+        background: red;
+        color: $black;
+    }
+
+}

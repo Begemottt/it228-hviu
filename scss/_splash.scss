@@ -47,6 +47,14 @@
         box-shadow: 4px 2px 2px $white, 4px 2px 2px inset $white;
         transform: translateX(-650px);
         transition: transform 500ms;
+        section#splash_logo{
+            background: url('../images/game_logo_white.svg') $black;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 12px;
+            width: 90%;
+            height: 10vh;
+        }
         &.active{
             z-index: 100;
             transform: translateX(20px);

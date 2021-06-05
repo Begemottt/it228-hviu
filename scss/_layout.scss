@@ -27,7 +27,6 @@ main{
     }
 }
 
-
 // [ [ [ Game articles and sections ] ] ]
 article{
     position: relative;
@@ -57,6 +56,11 @@ article{
             background-color: $grey;
             color: $black;
         }
+        &#logo{
+            background: url('../images/game_logo.svg') $white;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
     }
 }
 // [ [ [ The mini-map ] ] ]
@@ -79,6 +83,14 @@ article{
 }
 #character_portrait{
     grid-area: char;
+    p{
+        display: block;
+        font-size: 3vh;
+        color: $grey;
+        margin: auto;
+        border: 1px solid $white;
+        padding: 12px;
+    }
 }
 // [ [ [ The Log ] ] ]
 @import "log";
@@ -97,6 +109,14 @@ article{
     button{
         background-color: $white;
         color: $black;
+        &:hover{
+            background-color: $grey;
+        }
+        &:active{
+            transform: translateY(2px);
+            background-color: $black;
+            color: $white;
+        }
         span{
             display: inline-block;
             &#up_arrow{
