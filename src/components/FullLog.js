@@ -2,17 +2,16 @@
 import React from "react";
 
 export default function FullLog(
-    {logs = []}
+    data
 ){
     return(
-        <>
         <article id="full_log_window">
-        {logs.map((log, i) => (
+        {data.logs.map((log, i) => (
             <section className="log_line" key={i}>
                 <p><span className="line_number">{i} </span>{log}</p>
             </section>
         ))}
+        <button id="close_log" onClick={()=>data.closeLog()}>X</button>
         </article>
-        </>
     )
 }

@@ -12,14 +12,18 @@ h1, p{
     @include font_main;
 }
 p{
-    font-size: 2vh;
+    font-size: 1.4em;
 }
 button{
     @include font_main;
-    font-size: 3vh;
+    font-size: 2em;
 }
 // [ [ [ Specific text styles ] ] ]
 .line_number{
     color: $grey;
 }
 
+::selection{
+    background-color: $offred;
+    color: $white;
+}

@@ -1,0 +1,23 @@
+[
+    {
+      "id": 0,
+      "type": "question",
+      "text": "Would you like some advice on navigating this maze?",
+      "pointer": "",
+      "hook": ""
+    },
+    {
+      "id": 1,
+      "type": "answer",
+      "text": "Sure",
+      "pointer": 2,
+      "hook": "paving_stone"
+    },
+    {
+      "id": 2,
+      "type": "answer",
+      "text": "No thanks",
+      "pointer": 3,
+      "hook": ""
+    }
+]

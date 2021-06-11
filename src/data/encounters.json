@@ -1,0 +1,20 @@
+[
+    {
+      "id": 0,
+      "enemy1": 1,
+      "enemy2": 1,
+      "enemy3": 1
+    },
+    {
+      "id": 1,
+      "enemy1": 1,
+      "enemy2": 1,
+      "enemy3": ""
+    },
+    {
+      "id": 2,
+      "enemy1": 1,
+      "enemy2": "",
+      "enemy3": ""
+    }
+  ]

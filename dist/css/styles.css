@@ -90,16 +90,21 @@ h1, p {
 }
 
 p {
-  font-size: 2vh;
+  font-size: 1.4em;
 }
 
 button {
   font-family: "Xanh Mono", monospace;
-  font-size: 3vh;
+  font-size: 2em;
 }
 
 .line_number {
   color: #888888;
+}
+
+::selection {
+  background-color: #a14d3f;
+  color: #ffffff;
 }
 
 html {
@@ -245,16 +250,20 @@ article {
 #view #ceiling {
   width: 39.5%;
   height: 11%;
-  z-index: 1;
+  z-index: 6;
 }
 #view #ceiling.two_away {
   transform: scale(1);
 }
-#view #ceilingone_away {
+#view #ceiling.one_away {
   transform: scale(1.6);
 }
-#view #ceilingzero_away {
+#view #ceiling.zero_away {
   transform: scale(2.3);
+}
+#view #ceiling.none {
+  background-color: #000000;
+  background-image: none;
 }
 #view #left_wall {
   position: absolute;
@@ -271,7 +280,10 @@ article {
   height: 100%;
 }
 #view #left_wall div.wall {
-  background-color: #888888;
+  background-image: url("../images/textures/wall1.png");
+  background-size: cover;
+  background-repeat: repeat-y;
+  background-position: bottom;
 }
 #view #left_wall div.floor {
   background-color: #000000;
@@ -289,6 +301,9 @@ article {
   width: 39.5%;
   height: 40%;
   z-index: 6;
+  background-image: url("../images/textures/wall1.png");
+  background-size: cover;
+  background-position: top;
 }
 #view #back_wall.two_away {
   transform: scale(1) translateY(0);
@@ -301,6 +316,7 @@ article {
 }
 #view #back_wall.none {
   background-color: #000000;
+  background-image: none;
 }
 #view #right_wall {
   position: absolute;
@@ -317,7 +333,10 @@ article {
   height: 100%;
 }
 #view #right_wall div.wall {
-  background-color: #888888;
+  background-image: url("../images/textures/wall1.png");
+  background-size: cover;
+  background-repeat: repeat-y;
+  background-position: bottom;
 }
 #view #right_wall div.floor {
   background-color: #000000;
@@ -334,6 +353,9 @@ article {
 #view #floor {
   width: 100%;
   height: 49%;
+  background-image: url("../images/textures/floor1.png");
+  background-size: contain;
+  background-position: center;
 }
 
 #verbs {
@@ -348,6 +370,21 @@ article {
   color: #ffffff;
   width: 100%;
   padding: 4px;
+  border: 2px solid #000000;
+  transform: translate(0px 0px);
+  transition: transform 100ms;
+}
+#verbs button:hover {
+  background-color: #000000;
+  border: 2px solid #ffffff;
+  transform: translate(-4px, -4px);
+  transition: transform 100ms;
+}
+#verbs button:active {
+  color: red;
+  border: 2px solid red;
+  transform: translateY(4px);
+  transition: transform 100ms;
 }
 
 #character_portrait {
@@ -370,7 +407,7 @@ article {
   justify-content: space-between;
   z-index: 10;
 }
-#log_view #log {
+#log_view .log {
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -381,24 +418,24 @@ article {
   height: 100%;
   border-right: 1px solid #ffffff;
 }
-#log_view #log .log_line {
+#log_view .log .log_line {
   height: 20%;
 }
-#log_view #log .log_line:nth-child(even) {
+#log_view .log .log_line:nth-child(even) {
   background-color: #222;
 }
-#log_view #log .initial {
+#log_view .log .initial {
   position: relative;
   right: 4px;
   bottom: 16px;
 }
-#log_view #log .initial p {
+#log_view .log .initial p {
   font-size: 2.5vh;
   background-color: #000000;
   border: 1px solid #ffffff;
   padding: 4px;
 }
-#log_view #log .initial .current_line {
+#log_view .log .initial .current_line {
   font-size: 3vh;
   color: #ffffff;
 }
@@ -426,7 +463,8 @@ article {
 #full_log_window {
   position: fixed;
   top: 20px;
-  left: 40px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -446,11 +484,11 @@ article {
 }
 
 button#close_log {
-  position: fixed;
+  position: absolute;
   width: 40px;
   height: 40px;
-  top: 20px;
-  left: 50vw;
+  top: 4px;
+  right: 4px;
   text-align: center;
   padding: auto;
   z-index: 101;
@@ -473,14 +511,34 @@ button#close_log {
 #move_buttons button {
   background-color: #ffffff;
   color: #000000;
+  border: 2px solid #888888;
+  transform: translate(0px 0px);
+  transition: transform 200ms;
 }
 #move_buttons button:hover {
   background-color: #888888;
 }
+#move_buttons button:hover#up {
+  transform: translateY(-4px);
+  transition: transform 200ms;
+}
+#move_buttons button:hover#down {
+  transform: translateY(4px);
+  transition: transform 200ms;
+}
+#move_buttons button:hover#left {
+  transform: translateX(-4px);
+  transition: transform 200ms;
+}
+#move_buttons button:hover#right {
+  transform: translateX(4px);
+  transition: transform 200ms;
+}
 #move_buttons button:active {
   transform: translateY(2px);
   background-color: #000000;
-  color: #ffffff;
+  color: red;
+  border: 2px solid red;
 }
 #move_buttons button span {
   display: inline-block;
@@ -516,6 +574,14 @@ button#close_log {
   font-size: 3vh;
   flex-grow: 1;
 }
+#debug button:hover {
+  color: #fefefe;
+  background-color: #221f31;
+}
+#debug button:active {
+  color: #000000;
+  background-color: #ffffff;
+}
 
 #log_view {
   grid-area: log;
@@ -525,7 +591,7 @@ button#close_log {
   justify-content: space-between;
   z-index: 10;
 }
-#log_view #log {
+#log_view .log {
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -536,24 +602,24 @@ button#close_log {
   height: 100%;
   border-right: 1px solid #ffffff;
 }
-#log_view #log .log_line {
+#log_view .log .log_line {
   height: 20%;
 }
-#log_view #log .log_line:nth-child(even) {
+#log_view .log .log_line:nth-child(even) {
   background-color: #222;
 }
-#log_view #log .initial {
+#log_view .log .initial {
   position: relative;
   right: 4px;
   bottom: 16px;
 }
-#log_view #log .initial p {
+#log_view .log .initial p {
   font-size: 2.5vh;
   background-color: #000000;
   border: 1px solid #ffffff;
   padding: 4px;
 }
-#log_view #log .initial .current_line {
+#log_view .log .initial .current_line {
   font-size: 3vh;
   color: #ffffff;
 }
@@ -581,7 +647,8 @@ button#close_log {
 #full_log_window {
   position: fixed;
   top: 20px;
-  left: 40px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -601,11 +668,11 @@ button#close_log {
 }
 
 button#close_log {
-  position: fixed;
+  position: absolute;
   width: 40px;
   height: 40px;
-  top: 20px;
-  left: 50vw;
+  top: 4px;
+  right: 4px;
   text-align: center;
   padding: auto;
   z-index: 101;
@@ -630,7 +697,6 @@ div.blur.active {
 #splash {
   min-height: 101vh;
   height: auto;
-  width: 100vw;
   display: block;
   background-color: #000000;
 }
@@ -665,8 +731,8 @@ div.blur.active {
 #splash article#greeting {
   display: flex;
   position: fixed;
-  top: 20vh;
-  left: 20px;
+  top: 40px;
+  left: 40px;
   width: 600px;
   flex-direction: column;
   align-items: center;
@@ -707,8 +773,12 @@ div.blur.active {
   border-bottom: 2px dotted #888888;
 }
 #splash article#greeting p a:focus, #splash article#greeting p a:focus-visible, #splash article#greeting p a:focus-within, #splash article#greeting p a:active {
-  color: #ffffff;
+  color: #888888;
   border-bottom: 2px dotted #ff0000;
+}
+#splash article#greeting p a:hover {
+  color: #000000;
+  background-color: #ffffff;
 }
 #splash article#greeting button {
   width: 85%;
@@ -763,7 +833,7 @@ article#dialog section#portrait h2 {
   bottom: 4px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 4vh;
+  font-size: 3em;
   font-family: "Xanh Mono", monospace;
   color: #ffffff;
   margin: 12px;
@@ -787,7 +857,7 @@ article#dialog section#message section#line {
   width: 100%;
 }
 article#dialog section#message section#line p {
-  font-size: 3vh;
+  font-size: 2em;
   font-family: "Xanh Mono", monospace;
   color: #ffffff;
   margin: 16px;
@@ -817,17 +887,383 @@ article#dialog section#message section#buttons button:hover {
   transition: transform 200ms;
 }
 article#dialog section#message section#buttons button:active {
-  color: #ffffff;
+  color: red;
   background-color: #000000;
-  border: 1px dotted #000000;
+  border: 1px dotted red;
 }
 article#dialog button#close {
   position: absolute;
   right: 4px;
   top: 4px;
-  width: 100px;
+  width: 300px;
   height: 40px;
   text-align: center;
   background: red;
   color: #000000;
+}
+
+article#modal_window {
+  z-index: 110;
+  background-color: #000000;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  max-width: 600px;
+  transform: translate(-50%, -800px);
+  transition: transform 200ms ease-in;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+article#modal_window.active {
+  transform: translate(-50%, -50%);
+  transition: transform 200ms ease-out;
+}
+article#modal_window section#message {
+  box-shadow: 4px 4px 0px #221f31, -4px -4px 0px #221f31;
+  padding: 12px;
+  margin: 12px;
+  text-align: center;
+}
+article#modal_window section#message p {
+  font-size: 3.5em;
+  text-shadow: 2px 2px 0px #a14d3f;
+}
+article#modal_window button#close_modal {
+  width: 100%;
+  font-size: 3em;
+  padding: 12px;
+  border: 2px solid #a14d3f;
+  background-color: #000000;
+  color: #ffffff;
+  transform: translateY(0px);
+  transition: transform 200ms;
+}
+article#modal_window button#close_modal:hover {
+  background-color: #221f31;
+  color: #fefefe;
+  transform: translateY(-4px);
+  transition: transform 200ms;
+}
+article#modal_window button#close_modal:active {
+  color: #ff0000;
+  border: 2px solid #ff0000;
+  transform: translateY(4px);
+  transition: transform 200ms;
+}
+
+div#window_blur {
+  z-index: 109;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-image: url("../images/dither_black.png");
+}
+div#window_blur.inactive {
+  display: none;
+}
+
+article#battle_window {
+  z-index: 110;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  background-image: url("../images/dither_black.png");
+  border: none;
+  padding: 40px;
+}
+article#battle_window section#monsters {
+  position: relative;
+  top: 0;
+  left: 0;
+  background-color: #000000;
+  height: 60%;
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: baseline;
+  align-content: center;
+  text-align: center;
+}
+article#battle_window section#monsters section#target_message {
+  z-index: 150;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #ffffff;
+  padding: 8px;
+}
+article#battle_window section#monsters section#target_message h1 {
+  font-size: 3em;
+  color: #000000;
+  margin: 4px;
+}
+article#battle_window section#monsters section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  height: 100%;
+}
+article#battle_window section#monsters section img {
+  width: 15vw;
+  padding: 4px;
+  border: 2px solid transparent;
+  transform: translateY(0px);
+  transition: transform 200ms, border 200ms;
+}
+article#battle_window section#monsters section h1 {
+  font-size: 2em;
+  text-shadow: 2px 2px 0px #a568d4;
+  color: #fefefe;
+  transition: color 200ms;
+}
+article#battle_window section#monsters section h1 span.selection {
+  color: #000000;
+  transition: color 200ms;
+  text-shadow: none;
+}
+article#battle_window section#monsters section:hover.active {
+  cursor: crosshair;
+  background-color: #221f31;
+}
+article#battle_window section#monsters section:hover.active h1 {
+  color: #a14d3f;
+  transition: color 200ms;
+}
+article#battle_window section#monsters section:hover.active h1 span.selection {
+  color: #ffffff;
+  transition: color 200ms;
+  text-shadow: none;
+}
+article#battle_window section#monsters section:hover.active img {
+  border: 2px solid #ffffff;
+  transform: translateY(-4px);
+  transition: transform 200ms, border 200ms;
+}
+article#battle_window section#player_stats {
+  background-color: #000000;
+  border: 4px solid #ffffff;
+  width: 15vw;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+article#battle_window section#player_stats section {
+  border: 1px solid #221f31;
+  padding: 4px;
+  margin: 4px;
+}
+article#battle_window section#player_stats section h1 {
+  font-size: 1.25em;
+  font-weight: bold;
+}
+article#battle_window section#player_stats section p {
+  font-family: "VT323", monospace;
+  font-size: 1em;
+}
+article#battle_window section#player_stats section.battle_stats p {
+  font-size: 1.5em;
+}
+article#battle_window section#commands {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  background-color: #050403;
+  border: 4px solid #fefefe;
+  width: 30%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+article#battle_window section#commands button {
+  height: 20%;
+  width: 95%;
+  margin: 8px;
+  color: #ffffff;
+  background-color: #221f31;
+  border: 4px solid #ffffff;
+  transform: translate(0px 0px);
+  transition: transform 200ms;
+}
+article#battle_window section#commands button:hover {
+  background-color: #000000;
+  transform: translate(-4px, -4px);
+}
+article#battle_window section#commands button:active {
+  color: #ff0000;
+  border: 4px solid #ff0000;
+  transform: translate(2px, 2px);
+}
+article#battle_window section#commands section {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 150px;
+  left: -500px;
+  width: 500px;
+  height: auto;
+  z-index: 150;
+}
+article#battle_window section#commands section button {
+  width: 100%;
+  height: 50px;
+  margin: 0px;
+  border: 1px solid #ffffff;
+}
+article#battle_window section#commands section button:hover {
+  border: 1px solid #ff0000;
+}
+article#battle_window section#commands div.blur {
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  background-image: url("../images/dither_black.png");
+  position: absolute;
+}
+article#battle_window button#battle_debug {
+  width: 300px;
+  height: 100px;
+  color: #ffffff;
+  background-color: #221f31;
+  border: 2px solid #ff0000;
+}
+article#battle_window button#battle_debug:active {
+  background-color: #ffffff;
+  color: #221f31;
+}
+
+#battle_log {
+  background-color: #000000;
+  width: 60%;
+  height: 35%;
+  display: flex;
+  flex-direction: column;
+}
+#battle_log .log {
+  border: 1px solid #888888;
+  margin: 8px;
+  padding: 4px;
+}
+#battle_log .log .log_line {
+  background-color: #000000;
+}
+#battle_log .log .log_line:nth-child(even) {
+  background-color: #221f31;
+}
+#battle_log .log .log_line.initial {
+  font-size: 1.5em;
+  line-height: 1.75em;
+  border: 1px solid #fefefe;
+}
+
+article#loss_window {
+  z-index: 300;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50vw;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  border: 4px solid #ff0000;
+  background-color: #000000;
+  text-align: center;
+}
+article#loss_window h1 {
+  font-family: "VT323", monospace;
+  font-size: 10em;
+  font-weight: bolder;
+  color: #221f31;
+  text-shadow: 2px 2px 0px #ff0000, -2px -2px 0px #ff0000;
+  margin: 20px;
+}
+article#loss_window h2 {
+  font-size: 2em;
+  color: #ffffff;
+  margin: 12px;
+  font-family: "Xanh Mono", monospace;
+}
+article#loss_window button {
+  height: 200px;
+  width: 300px;
+  margin: 20px;
+  color: #ffffff;
+  background-color: #000000;
+  border: 1px solid #ffffff;
+}
+article#loss_window button:hover {
+  color: #000000;
+  background-color: #ffffff;
+  transform: translate(-4px, -4px);
+}
+article#loss_window button:active {
+  transform: translate(2px, 2px);
+}
+
+section#victory {
+  z-index: 200;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  border: 2px solid #316f23;
+  background-color: #000000;
+  text-align: center;
+}
+section#victory h1 {
+  font-size: 3em;
+  color: #ffffff;
+  text-shadow: 4px 4px 0px #7cc264;
+  margin: 12px;
+}
+section#victory h2 {
+  font-size: 2em;
+  color: #ffffff;
+  text-shadow: 2px 2px 0px #316f23;
+  margin: 12px;
+  font-family: "Xanh Mono", monospace;
+}
+section#victory button {
+  border: 2px solid #ffffff;
+  background-color: #7cc264;
+  color: #ffffff;
+  font-size: 2em;
+  width: 95%;
+  padding: 4px;
+}
+section#victory button:hover {
+  color: #000000;
+  border: 2px solid #7cc264;
+}
+section#victory button:active {
+  color: #7cc264;
+  background-color: #ffffff;
 }

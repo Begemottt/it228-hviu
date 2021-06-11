@@ -1,0 +1,22 @@
+[
+    {
+      "id": 0,
+      "scene": 0,
+      "type": "message",
+      "text": "I am much too busy to speak.",
+      "hook": "",
+      "flag": "",
+      "req_hook": "",
+      "req_flag": ""
+    },
+    {
+      "id": 1,
+      "scene": 0,
+      "type": "message",
+      "text": "Goodbye!",
+      "hook": "",
+      "flag": "",
+      "req_hook": "",
+      "req_flag": ""
+    }
+]

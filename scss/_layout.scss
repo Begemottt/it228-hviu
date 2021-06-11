@@ -79,6 +79,21 @@ article{
         color: $white;
         width: 100%;
         padding: 4px;
+        border: 2px solid $black;
+        transform: translate(0px 0px);
+        transition: transform 100ms;
+        &:hover{
+            background-color: $black;
+            border: 2px solid $white;
+            transform: translate(-4px, -4px);
+            transition: transform 100ms;
+        }
+        &:active{
+            color: red;
+            border: 2px solid red;
+            transform: translateY(4px);
+            transition: transform 100ms;
+        }
     }
 }
 #character_portrait{
@@ -109,13 +124,33 @@ article{
     button{
         background-color: $white;
         color: $black;
+        border: 2px solid $grey;
+        transform: translate(0px 0px);
+        transition: transform 200ms;
         &:hover{
             background-color: $grey;
+            &#up{
+                transform: translateY(-4px);
+                transition: transform 200ms;
+            }
+            &#down{
+                transform: translateY(4px);
+                transition: transform 200ms;
+            }
+            &#left{
+                transform: translateX(-4px);
+                transition: transform 200ms;
+            }
+            &#right{
+                transform: translateX(4px);
+                transition: transform 200ms;
+            }
         }
         &:active{
             transform: translateY(2px);
             background-color: $black;
-            color: $white;
+            color: red;
+            border: 2px solid red;
         }
         span{
             display: inline-block;
@@ -151,5 +186,13 @@ article{
         @include font_main;
         font-size: 3vh;
         flex-grow: 1;
+        &:hover{
+            color: $offwhite;
+            background-color: $nearblack;
+        }
+        &:active{
+            color: $black;
+            background-color: $white;
+        }
     }
 }

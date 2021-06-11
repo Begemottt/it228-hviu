@@ -4,7 +4,7 @@
 // It uses the GetSquareData function to check the square.
 import getSquareData from "./GetSquareData";
 
-export default function movePlayer(map, position, direction, mapsize) {
+export default function movePlayer(map, position, direction) {
     let x = 0, y = 0, facing = position.facing, modifier = 0;
     switch(direction){
         case "forwards":
@@ -32,7 +32,7 @@ export default function movePlayer(map, position, direction, mapsize) {
             y = (position.y);
         break;
     }
-    let square = getSquareData(map, x, y, mapsize);
+    let square = getSquareData(map, x, y);
     switch(square.type){
         case "wall":
             return {x:position.x, y:position.y, message:"Ouch! You bump into a wall."};

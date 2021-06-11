@@ -1,0 +1,156 @@
+[
+    {
+      "id": 0,
+      "type": "message",
+      "text": "Hello there! You may calle me Raven.",
+      "hook": "",
+      "flag": "",
+      "req_hook": "",
+      "req_flag": "",
+      "name": "Strange Bird",
+      "portrait": "raven1"
+    },
+    {
+      "id": 1,
+      "type": "message",
+      "text": "Well, you're quite the sorry sight.",
+      "hook": "",
+      "flag": "",
+      "req_hook": "",
+      "req_flag": "",
+      "name": "Raven",
+      "portrait": "raven1"
+    },
+    {
+      "id": 2,
+      "type": "message",
+      "text": "I hope you can survive in this dungeon, it's quite dangerous.",
+      "hook": "",
+      "flag": "",
+      "req_hook": "",
+      "req_flag": "",
+      "name": "Raven",
+      "portrait": "raven1"
+    },
+    {
+      "id": 3,
+      "type": "question",
+      "text": "Would you like some advice on navigating this maze?",
+      "hook": "",
+      "flag": "",
+      "req_hook": "",
+      "req_flag": "",
+      "name": "Raven",
+      "portrait": "raven1"
+    },
+    {
+      "id": 4,
+      "type": "answer",
+      "text": "Sure",
+      "hook": "paving_stone",
+      "flag": 1,
+      "req_hook": "",
+      "req_flag": "",
+      "name": "Raven",
+      "portrait": "raven1"
+    },
+    {
+      "id": 5,
+      "type": "answer",
+      "text": "No thanks",
+      "hook": "",
+      "flag": 2,
+      "req_hook": "",
+      "req_flag": "",
+      "name": "Raven",
+      "portrait": "raven1"
+    },
+    {
+      "id": 6,
+      "type": "message",
+      "text": "Oh?",
+      "hook": "",
+      "flag": "",
+      "req_hook": "",
+      "req_flag": 1,
+      "name": "Raven",
+      "portrait": "raven1"
+    },
+    {
+      "id": 7,
+      "type": "message",
+      "text": "Excellent! Use the arrow buttons in the lower right to move.",
+      "hook": "",
+      "flag": "",
+      "req_hook": "",
+      "req_flag": 1,
+      "name": "Raven",
+      "portrait": "raven1"
+    },
+    {
+      "id": 8,
+      "type": "message",
+      "text": "Up and down for forward and back, and left and right to turn.",
+      "hook": "",
+      "flag": "",
+      "req_hook": "",
+      "req_flag": 1,
+      "name": "Raven",
+      "portrait": "raven1"
+    },
+    {
+      "id": 9,
+      "type": "message",
+      "text": "And watch out for uneven paving stones! Tripping can be quite dangerous.",
+      "hook": "",
+      "flag": "",
+      "req_hook": "",
+      "req_flag": 1,
+      "name": "Raven",
+      "portrait": "raven1"
+    },
+    {
+      "id": 10,
+      "type": "message",
+      "text": "Alright, if you say so.",
+      "hook": "",
+      "flag": "",
+      "req_hook": "",
+      "req_flag": 2,
+      "name": "Raven",
+      "portrait": "raven1"
+    },
+    {
+      "id": 11,
+      "type": "message",
+      "text": "But don't say I didn't warn you!",
+      "hook": "",
+      "flag": "",
+      "req_hook": "",
+      "req_flag": 2,
+      "name": "Raven",
+      "portrait": "raven1"
+    },
+    {
+      "id": 12,
+      "type": "message",
+      "text": "Be careful out there!",
+      "hook": "",
+      "flag": "",
+      "req_hook": "hurt",
+      "req_flag": "",
+      "name": "Raven",
+      "portrait": "raven1"
+    },
+    {
+      "id": 13,
+      "type": "close",
+      "text": "",
+      "hook": "",
+      "flag": "",
+      "req_hook": "",
+      "req_flag": "",
+      "name": "",
+      "portrait": ""
+    }
+  ]

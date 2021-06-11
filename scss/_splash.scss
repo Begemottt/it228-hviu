@@ -2,7 +2,6 @@
 #splash{
     min-height: 101vh;
     height: auto;
-    width: 100vw;
     display: block;
     background-color: $black;
     section#header{
@@ -36,8 +35,8 @@
     article#greeting{
         display: flex;
         position: fixed;
-        top: 20vh;
-        left: 20px;
+        top: 40px;
+        left: 40px;
         width: 600px;
         flex-direction: column;
         align-items: center;
@@ -75,8 +74,12 @@
                 text-decoration: none;
                 border-bottom: 2px dotted $grey;
                 &:focus, &:focus-visible, &:focus-within, &:active{
-                    color: $white;
+                    color: $grey;
                     border-bottom: 2px dotted #ff0000;
+                }
+                &:hover{
+                    color: $black;
+                    background-color: $white;
                 }
             }
         }

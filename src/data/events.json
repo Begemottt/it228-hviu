@@ -1,0 +1,66 @@
+[
+    {
+      "id": 0,
+      "type": "none",
+      "key": 0,
+      "hook": "",
+      "req_hook": "",
+      "failure": ""
+    },
+    {
+      "id": 1,
+      "type": "speak",
+      "key": 1,
+      "hook": "newbie",
+      "req_hook": "newbie",
+      "failure": "The bird is nowhere to be seen...."
+    },
+    {
+      "id": 2,
+      "type": "damage",
+      "key": 1,
+      "hook": "",
+      "req_hook": "paving_stone",
+      "failure": "You gracefully avoid the sharp edge of a loose paving stone."
+    },
+    {
+      "id": 3,
+      "type": "battle",
+      "key": 0,
+      "hook": "",
+      "req_hook": "",
+      "failure": ""
+    },
+    {
+      "id": 4,
+      "type": "message",
+      "key": 0,
+      "hook": "",
+      "req_hook": "",
+      "failure": ""
+    },
+    {
+      "id": 5,
+      "type": "open",
+      "key": 0,
+      "hook": "",
+      "req_hook": "",
+      "failure": "You pull on the handle to no avail!"
+    },
+    {
+      "id": 6,
+      "type": "message",
+      "key": 2,
+      "hook": "",
+      "req_hook": "newbie",
+      "failure": "The figure is gone...."
+    },
+    {
+      "id": 7,
+      "type": "message",
+      "key": 3,
+      "hook": "",
+      "req_hook": "newbie",
+      "failure": "The figure is gone...."
+    }
+  ]

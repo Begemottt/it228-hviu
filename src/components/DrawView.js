@@ -16,30 +16,30 @@ export default function DrawView(data){
     switch(facing){
         case "north":
             for(let i = -3; i <= 0; i++){
-                viewCoordinates.left.push(getSquareData(data.map, x-1, y+i, data.size).type);
-                viewCoordinates.middle.push(getSquareData(data.map, x, y+i, data.size).type);
-                viewCoordinates.right.push(getSquareData(data.map, x+1, y+i, data.size).type);
+                viewCoordinates.left.push(getSquareData(data.map, x-1, y+i).type);
+                viewCoordinates.middle.push(getSquareData(data.map, x, y+i).type);
+                viewCoordinates.right.push(getSquareData(data.map, x+1, y+i).type);
             }
         break;
         case "south":
             for(let i = 3; i >= 0; i--){
-                viewCoordinates.left.push(getSquareData(data.map, x+1, y+i, data.size).type);
-                viewCoordinates.middle.push(getSquareData(data.map, x, y+i, data.size).type);
-                viewCoordinates.right.push(getSquareData(data.map, x-1, y+i, data.size).type);
+                viewCoordinates.left.push(getSquareData(data.map, x+1, y+i).type);
+                viewCoordinates.middle.push(getSquareData(data.map, x, y+i).type);
+                viewCoordinates.right.push(getSquareData(data.map, x-1, y+i).type);
             }
         break;
         case "west":
             for(let i = -3; i <= 0; i++){
-                viewCoordinates.left.push(getSquareData(data.map, x+i, y+1, data.size).type);
-                viewCoordinates.middle.push(getSquareData(data.map, x+i, y, data.size).type);
-                viewCoordinates.right.push(getSquareData(data.map, x+i, y-1, data.size).type);
+                viewCoordinates.left.push(getSquareData(data.map, x+i, y+1).type);
+                viewCoordinates.middle.push(getSquareData(data.map, x+i, y).type);
+                viewCoordinates.right.push(getSquareData(data.map, x+i, y-1).type);
             }
         break;
         case "east":
             for(let i = 3; i >= 0; i--){
-                viewCoordinates.left.push(getSquareData(data.map, x+i, y-1, data.size).type);
-                viewCoordinates.middle.push(getSquareData(data.map, x+i, y, data.size).type);
-                viewCoordinates.right.push(getSquareData(data.map, x+i, y+1, data.size).type);
+                viewCoordinates.left.push(getSquareData(data.map, x+i, y-1).type);
+                viewCoordinates.middle.push(getSquareData(data.map, x+i, y).type);
+                viewCoordinates.right.push(getSquareData(data.map, x+i, y+1).type);
             }
         break;
     }
@@ -54,7 +54,7 @@ export default function DrawView(data){
     }
     return(
         <>
-        <section id="ceiling"></section>
+        <section id="ceiling" className ={viewCoordinates.back}></section>
         <section id="left_wall">
             <div id="left_wall1" className={viewCoordinates.left[3]}></div>
             <div id="left_wall2" className={viewCoordinates.left[2]}></div>

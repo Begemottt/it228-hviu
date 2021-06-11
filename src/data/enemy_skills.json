@@ -1,0 +1,56 @@
+[
+    {
+      "id": 0,
+      "name": "",
+      "element": "",
+      "formula": "",
+      "target": "",
+      "cost": "",
+      "message": ""
+    },
+    {
+      "id": 1,
+      "name": "Attack",
+      "element": "physical",
+      "formula": 1,
+      "target": "single",
+      "cost": 0,
+      "message": "attacks!"
+    },
+    {
+      "id": 2,
+      "name": "Hurl",
+      "element": "physical",
+      "formula": 1.5,
+      "target": "single",
+      "cost": 0,
+      "message": "hurls something!"
+    },
+    {
+      "id": 3,
+      "name": "Smack",
+      "element": "physical",
+      "formula": 2,
+      "target": "single",
+      "cost": 5,
+      "message": "smacks you with its claw!"
+    },
+    {
+      "id": 4,
+      "name": "Eerie Spell",
+      "element": "magical",
+      "formula": 1,
+      "target": "all",
+      "cost": 5,
+      "message": "casts an eerie spell!"
+    },
+    {
+      "id": 5,
+      "name": "Insult",
+      "element": "emotional",
+      "formula": 1,
+      "target": "single",
+      "cost": 0,
+      "message": "yells an insult!"
+    }
+  ]

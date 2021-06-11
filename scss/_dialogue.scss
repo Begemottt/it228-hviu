@@ -44,7 +44,7 @@ article#dialog{
             bottom: 4px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 4vh;
+            font-size: 3em;
             @include font_main;
             color: $white;
             margin: 12px;
@@ -68,7 +68,7 @@ article#dialog{
             height: 50%;
             width: 100%;
             p{
-                font-size: 3vh;
+                font-size: 2em;
                 @include font_main;
                 color: $white;
                 margin: 16px;
@@ -97,9 +97,9 @@ article#dialog{
                     transition: transform 200ms;
                 }
                 &:active{
-                    color: $white;
+                    color: red;
                     background-color: $black;
-                    border: 1px dotted $black;
+                    border: 1px dotted red;
                 }
             }
         }
@@ -109,7 +109,7 @@ article#dialog{
         position: absolute;
         right: 4px;
         top: 4px;
-        width: 100px;
+        width: 300px;
         height: 40px;
         text-align: center;
         background: red;

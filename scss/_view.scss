@@ -17,15 +17,19 @@
     #ceiling{
         width: 39.5%;
         height: 11%;
-        z-index: 1;
+        z-index: 6;
         &.two_away{
             transform: scale(1);
         }
-        &one_away{
+        &.one_away{
             transform: scale(1.6);
         }
-        &zero_away{
+        &.zero_away{
             transform: scale(2.3);
+        }
+        &.none{
+            background-color: $black;
+            background-image: none;
         }
     }
     #left_wall{
@@ -38,10 +42,15 @@
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
+        
         div{
             height: 100%;
             &.wall{
-                background-color: $grey;
+                // background-color:transparent;
+                background-image: url('../images/textures/wall1.png');
+                background-size: cover;
+                background-repeat: repeat-y;
+                background-position: bottom;
             }
             &.floor{
                 background-color: $black;
@@ -61,6 +70,9 @@
         width: 39.5%;
         height: 40%;
         z-index: 6;
+        background-image: url('../images/textures/wall1.png');
+        background-size: cover;
+        background-position: top;
         &.two_away{
             transform: scale(1)translateY(0);
         }
@@ -72,6 +84,7 @@
         }
         &.none{
             background-color: $black;
+            background-image: none;
         }
     }
     #right_wall{
@@ -87,7 +100,10 @@
         div{
             height: 100%;
             &.wall{
-                background-color: $grey;
+                background-image: url('../images/textures/wall1.png');
+                background-size: cover;
+                background-repeat: repeat-y;
+                background-position: bottom;
             }
             &.floor{
                 background-color: $black;
@@ -106,5 +122,8 @@
     #floor{
         width: 100%;
         height: 49%;
+        background-image:url('../images/textures/floor1.png');
+        background-size: contain;
+        background-position:center;
     }
 }

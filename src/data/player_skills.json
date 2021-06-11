@@ -1,0 +1,82 @@
+[
+    {
+      "id": 0,
+      "name": "Attack",
+      "element": "physical",
+      "formula": 1,
+      "target": "single",
+      "cost": 0,
+      "message": "attacks!",
+      "description": "A basic attack with your weapon, 1x physical damage."
+    },
+    {
+      "id": 1,
+      "name": "Magic Missile",
+      "element": "magic",
+      "formula": 1,
+      "target": "single",
+      "cost": 0,
+      "message": "casts magic missile!",
+      "description": "Cast a simple magic missile spell, 1x magical damage."
+    },
+    {
+      "id": 2,
+      "name": "Heavy Attack",
+      "element": "physical",
+      "formula": 2,
+      "target": "single",
+      "cost": 5,
+      "message": "attacks with all their might!",
+      "description": "An attack with more oomph! 2x physical damage."
+    },
+    {
+      "id": 3,
+      "name": "Fireball",
+      "element": "magic",
+      "formula": 1,
+      "target": "all",
+      "cost": 5,
+      "message": "hurls a fireball!",
+      "description": "Hurl a fireball to damage all foes, 1x magical damage."
+    },
+    {
+      "id": 4,
+      "name": "Harrangue",
+      "element": "emotional",
+      "formula": 1,
+      "target": "single",
+      "cost": 0,
+      "message": "harrangues the enemy intensely!",
+      "description": "Harass your enemies with prying questions, 1x emotional damage."
+    },
+    {
+      "id": 5,
+      "name": "Debate",
+      "element": "emotional",
+      "formula": 2,
+      "target": "single",
+      "cost": 5,
+      "message": "engages with debate!",
+      "description": "Engage your enemy in serious debate, 2x emotional damage."
+    },
+    {
+      "id": 6,
+      "name": "Defend",
+      "element": "physical",
+      "formula": 2,
+      "target": "self",
+      "cost": 0,
+      "message": "defends!",
+      "description": "Defend yourself from physical harm."
+    },
+    {
+      "id": 7,
+      "name": "Flee",
+      "element": "physical",
+      "formula": 0,
+      "target": "self",
+      "cost": 0,
+      "message": "flees the battle!",
+      "description": "Run away and live to fight another day!"
+    }
+]

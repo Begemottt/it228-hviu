@@ -1,0 +1,18 @@
+[
+    {
+      "id": 0,
+      "text": "Hello! This is a test message, for the purpose of testing things!"
+    },
+    {
+      "id": 1,
+      "text": "You trip on an uneven paving stone in the darkness."
+    },
+    {
+      "id": 2,
+      "text": "You see a figure to the south, somehow part of the wall...."
+    },
+    {
+      "id": 3,
+      "text": "You see a figure to the west, somehow part of the wall...."
+    }
+  ]
