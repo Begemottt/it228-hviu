@@ -2,65 +2,113 @@
     {
       "id": 0,
       "type": "none",
-      "key": 0,
+      "key": "",
       "hook": "",
       "req_hook": "",
       "failure": ""
     },
     {
       "id": 1,
-      "type": "speak",
+      "type": "dialog",
       "key": 1,
       "hook": "newbie",
       "req_hook": "newbie",
-      "failure": "The bird is nowhere to be seen...."
+      "failure": "The strange bird is gone...."
     },
     {
       "id": 2,
-      "type": "damage",
-      "key": 1,
-      "hook": "",
-      "req_hook": "paving_stone",
-      "failure": "You gracefully avoid the sharp edge of a loose paving stone."
+      "type": "dialog",
+      "key": 2,
+      "hook": "taunt",
+      "req_hook": "taunt",
+      "failure": "The entity has disappeared."
     },
     {
       "id": 3,
-      "type": "battle",
-      "key": 0,
+      "type": "dialog",
+      "key": 3,
       "hook": "",
       "req_hook": "",
       "failure": ""
     },
     {
       "id": 4,
-      "type": "message",
-      "key": 0,
+      "type": "damage",
+      "key": 4,
       "hook": "",
-      "req_hook": "",
-      "failure": ""
+      "req_hook": "paving_stone",
+      "failure": "You gracefully avoid tripping on the uneven paving stone."
     },
     {
       "id": 5,
-      "type": "open",
-      "key": 0,
+      "type": "important_message",
+      "key": 1,
       "hook": "",
-      "req_hook": "",
-      "failure": "You pull on the handle to no avail!"
+      "req_hook": "newbie",
+      "failure": ""
     },
     {
       "id": 6,
-      "type": "message",
+      "type": "important_message",
       "key": 2,
-      "hook": "",
-      "req_hook": "newbie",
-      "failure": "The figure is gone...."
+      "hook": "unease",
+      "req_hook": "unease",
+      "failure": ""
     },
     {
       "id": 7,
       "type": "message",
       "key": 3,
       "hook": "",
-      "req_hook": "newbie",
-      "failure": "The figure is gone...."
+      "req_hook": "",
+      "failure": ""
+    },
+    {
+      "id": 8,
+      "type": "battle",
+      "key": 1,
+      "hook": "battle1",
+      "req_hook": "battle1",
+      "failure": ""
+    },
+    {
+      "id": 9,
+      "type": "battle",
+      "key": 2,
+      "hook": "battle2",
+      "req_hook": "battle2",
+      "failure": ""
+    },
+    {
+      "id": 10,
+      "type": "battle",
+      "key": 3,
+      "hook": "battle3",
+      "req_hook": "battle3",
+      "failure": ""
+    },
+    {
+      "id": 11,
+      "type": "battle",
+      "key": 4,
+      "hook": "battle4",
+      "req_hook": "battle4",
+      "failure": ""
+    },
+    {
+      "id": 12,
+      "type": "listen",
+      "key": 3,
+      "hook": "",
+      "req_hook": "",
+      "failure": ""
+    },
+    {
+      "id": 13,
+      "type": "important_message",
+      "key": 5,
+      "hook": "",
+      "req_hook": "battle2",
+      "failure": "The halls are silent once more."
     }
   ]

@@ -148,15 +148,14 @@ article {
   z-index: 10;
 }
 #header_menus section {
+  position: relative;
+  top: 0;
+  left: 0;
   width: 25%;
   height: 100%;
   display: flex;
   align-items: center;
   align-content: center;
-}
-#header_menus section p {
-  margin: auto;
-  text-align: center;
 }
 #header_menus section button {
   height: 100%;
@@ -164,10 +163,83 @@ article {
   background-color: #888888;
   color: #000000;
 }
+#header_menus section button#status_menu {
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  transform: translateY(0px);
+  transition: transform 100ms;
+}
+#header_menus section button#status_menu:hover {
+  color: #7cc264;
+}
+#header_menus section button#status_menu:active {
+  border-color: #7cc264;
+  transform: translateY(-4px);
+  transition: transform 100ms;
+}
 #header_menus section#logo {
   background: url("../images/game_logo.svg") #ffffff;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+#status #stats_window {
+  z-index: 200;
+  position: absolute;
+  top: 4vw;
+  left: 0;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  background-color: #000000;
+  border: 2px solid #888888;
+  box-shadow: 4px 4px 0px #7cc264;
+}
+#status #stats_window section {
+  padding: 4px;
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+#status #stats_window section h1 {
+  display: block;
+  width: 95%;
+  font-family: "Xanh Mono", monospace;
+  font-size: 2em;
+  color: #fefefe;
+  text-shadow: 2px 2px 0px #7cc264;
+  padding: 12px;
+}
+#status #stats_window section h2 {
+  display: block;
+  width: 95%;
+  font-family: "Xanh Mono", monospace;
+  font-size: 1.5em;
+  color: #ffffff;
+  padding: 8px;
+}
+#status #stats_window section p {
+  display: block;
+  width: 45%;
+  color: #ffffff;
+  font-family: "Xanh Mono", monospace;
+  font-size: 1em;
+  margin: 4px;
+  text-align: left;
+}
+#status #stats_window section p.number {
+  font-family: "VT323", monospace;
+  text-align: right;
 }
 
 #map {
@@ -1112,6 +1184,7 @@ article#battle_window section#commands button:active {
   transform: translate(2px, 2px);
 }
 article#battle_window section#commands section {
+  z-index: 176;
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -1119,7 +1192,6 @@ article#battle_window section#commands section {
   left: -500px;
   width: 500px;
   height: auto;
-  z-index: 150;
 }
 article#battle_window section#commands section button {
   width: 100%;
@@ -1150,6 +1222,7 @@ article#battle_window button#battle_debug:active {
 }
 
 #battle_log {
+  z-index: 175;
   background-color: #000000;
   width: 60%;
   height: 35%;

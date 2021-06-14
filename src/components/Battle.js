@@ -7,6 +7,7 @@ import loadPlayerData from "./loadPlayerData";
 import BattleLog from "./BattleLog";
 import SubCommands from "./SubCommands";
 import VictoryBox from "./VictoryBox";
+import anime from "animejs";
 
 export default function Battle(props){
     // The turn delay in microseconds!
@@ -92,6 +93,29 @@ export default function Battle(props){
     const toggleCommands = () =>{
         changeBlurCommands(blurCommands => !blurCommands)
     }
+
+    // Battle animations!
+    const wiggle = (object) => {
+        anime({
+            targets: object,
+            keyframes:[
+                {rotate: 10},
+                {rotate: -10}
+            ],
+            direction: 'alternate',
+            easing: 'linear',
+            duration: 300
+        });
+    }
+    const bump  = (object) => {
+        anime({
+            targets: object,
+            translateY: -20,
+            duration: 100,
+            easing: 'linear',
+            direction: 'alternate'
+        });
+    }
     
     // Battle Logic!!
     // First, some boilerplate for combat. Hide the command list, close the skill panel, print the message for the player's attack.
@@ -110,6 +134,8 @@ export default function Battle(props){
             props.spend(skill.cost);
             damageEnemy(targetID, damageDealt);
             addBattleLog(damageDealt + " " + skill.element + " damage to " + target.name + "!");
+            let enemyObj = document.getElementById("enemy" + targetID);
+            bump(enemyObj);
         } else {
             addBattleLog("Not enough MP!! Your technique fails.");
         }
@@ -188,6 +214,8 @@ export default function Battle(props){
             break;
         }
         addBattleLog(enemies[key].name + " " + skillUsed.message);
+        let enemyObj  = document.getElementById("enemy" + key);
+        wiggle(enemyObj);
         setTimeout(() => {
             enemyAttack(enemy, skillUsed, key);
         }, turnDelay);
@@ -258,7 +286,7 @@ export default function Battle(props){
         : greeting = (greeting + " blocks your path!")
         enemy2 != undefined
         ? changeFarewell("You defeated " + enemies[0].name + " and cohort!")
-        : changeFarewell("You defeated the " + enemes[0].name + "!")
+        : changeFarewell("You defeated the " + enemies[0].name + "!")
         addBattleLog(greeting);
     }
     let myReturn = <></>;

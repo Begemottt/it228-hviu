@@ -15,7 +15,7 @@
       "formula": 1,
       "target": "single",
       "cost": 0,
-      "message": "attacks!"
+      "message": "Attacks!"
     },
     {
       "id": 2,
@@ -24,7 +24,7 @@
       "formula": 1.5,
       "target": "single",
       "cost": 0,
-      "message": "hurls something!"
+      "message": "Hurls something!"
     },
     {
       "id": 3,
@@ -33,7 +33,7 @@
       "formula": 2,
       "target": "single",
       "cost": 5,
-      "message": "smacks you with its claw!"
+      "message": "Smacks you with its claw!"
     },
     {
       "id": 4,
@@ -42,7 +42,7 @@
       "formula": 1,
       "target": "all",
       "cost": 5,
-      "message": "casts an eerie spell!"
+      "message": "Casts an eerie spell!"
     },
     {
       "id": 5,
@@ -51,6 +51,33 @@
       "formula": 1,
       "target": "single",
       "cost": 0,
-      "message": "yells an insult!"
+      "message": "Yells an insult!"
+    },
+    {
+      "id": 6,
+      "name": "Blast",
+      "element": "magical",
+      "formula": 3,
+      "target": "single",
+      "cost": 0,
+      "message": "Fires a magical blast!"
+    },
+    {
+      "id": 7,
+      "name": "Rake",
+      "element": "physical",
+      "formula": 3,
+      "target": "single",
+      "cost": 0,
+      "message": "Rakes with its claws!"
+    },
+    {
+      "id": 8,
+      "name": "Loaf",
+      "element": "physical",
+      "formula": 0,
+      "target": "single",
+      "cost": 0,
+      "message": "Loafs around...."
     }
-  ]
+]

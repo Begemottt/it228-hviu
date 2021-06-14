@@ -2,60 +2,71 @@
     {
       "id": 0,
       "type": "message",
-      "text": "Halt! Who goes there!?",
+      "text": "Oh! Hello there.",
       "hook": "",
       "flag": "",
       "req_hook": "",
       "req_flag": "",
-      "name": "Strange Figure",
-      "portrait": "genius1"
+      "name": "Raven",
+      "portrait": "raven1"
     },
     {
       "id": 1,
       "type": "message",
-      "text": "Ah, another pathetic fool lost beyond the veil...",
+      "text": "Nice to see you again.",
       "hook": "",
       "flag": "",
       "req_hook": "",
       "req_flag": "",
-      "name": "Strange Figure",
-      "portrait": "genius1"
+      "name": "Raven",
+      "portrait": "raven1"
     },
     {
       "id": 2,
       "type": "message",
-      "text": "I am the Winged Genius, spirit of this place.",
+      "text": "Glad you've survived this far.",
       "hook": "",
       "flag": "",
       "req_hook": "",
       "req_flag": "",
-      "name": "Strange Figure",
-      "portrait": "genius1"
+      "name": "Raven",
+      "portrait": "raven1"
     },
     {
       "id": 3,
       "type": "message",
-      "text": "I pray we shall ne'er meet again... for your sake.",
+      "text": "The Genius is very nearby now.",
       "hook": "",
       "flag": "",
       "req_hook": "",
       "req_flag": "",
-      "name": "Winged Genius",
-      "portrait": "genius1"
+      "name": "Raven",
+      "portrait": "raven1"
     },
     {
       "id": 4,
       "type": "message",
-      "text": "[ The figure dissipates into thin air.... ]",
+      "text": "Watch out, she has a very dangerous magical attack!",
       "hook": "",
       "flag": "",
       "req_hook": "",
       "req_flag": "",
-      "name": "...",
-      "portrait": "empty"
+      "name": "Raven",
+      "portrait": "raven1"
     },
     {
       "id": 5,
+      "type": "message",
+      "text": "Good luck!",
+      "hook": "",
+      "flag": "",
+      "req_hook": "",
+      "req_flag": "",
+      "name": "Raven",
+      "portrait": "raven1"
+    },
+    {
+      "id": 6,
       "type": "close",
       "text": "",
       "hook": "",

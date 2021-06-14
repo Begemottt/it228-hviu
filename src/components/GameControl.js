@@ -16,6 +16,7 @@ import Verbs from "./Verbs";
 import Modal from "./Modal";
 import Battle from "./Battle";
 import Loss from "./Loss";
+import Stats from "./Stats"
 // [ Data ]
 import playerStatData from "../data/player_stats.json";
 
@@ -24,15 +25,19 @@ export default function GameControl(){
     const [hooks, changeHook] = useState(
         {
             paving_stone: true, // [ [ [ THIS IS THE LIST OF HOOKS! ] ] ]
-            hurt: false,
             newbie: true,
-            iron_key: false
+            battle1: true,
+            battle2: true,
+            battle3: true,
+            battle4: true,
+            unease: true,
+            taunt: true
         }
     )
     const setHook = hook => {
         let newValue = hooks;
         newValue[hook] = !newValue[hook];
-        changeHook(newValue);
+        changeHook(oldvalues=>newValue);
     }
 
     // Functions for the log! Just toss a string into writeLog and it'll show up there.
@@ -68,7 +73,7 @@ export default function GameControl(){
     const toggleDialogueWindow = newNumber =>{
         changeDialogue(!dialogueOpen);
         Blur("full");
-        changeScriptnumber(newNumber);
+        changeScriptnumber(oldvalue=>newNumber);
     }
     // Message window
     const [messageOpen, changeMessageOpen] = useState(false);
@@ -96,6 +101,11 @@ export default function GameControl(){
         messageClass === "inactive"
         ? changeMessageClass("active")
         : changeMessageClass("inactive")
+    }
+    const [statusOpen, changeOpenStatus] = useState(false);
+    const toggleStatusWindow = () => {
+        let newValue = !statusOpen;
+        changeOpenStatus(()=>newValue);
     }
     // Battle window
     const [battleOpen, changeBattleOpen] = useState(false);
@@ -139,11 +149,11 @@ export default function GameControl(){
     // Functions for handling the map
     const [playerPosition, changePosition] = useState({
         x:0,
-        y:0,
+        y:1,
         facing: "east"
     });
     var testMap = [[]];
-    testMap = loadMap("test");
+    testMap = loadMap("demo");
 
     // Function for handling movement and turning. Very messy! Updates the playerPosition state
     const Movement = (direction) => {
@@ -209,7 +219,6 @@ export default function GameControl(){
                         addLog("You turn to the right and face north.");
                     break;
                 };
-                
             break;
         }
     };
@@ -223,17 +232,17 @@ export default function GameControl(){
                 break;
                 case "message" || "hear":
                     addLog(messageHandler(eventData.key));
-                    openModal(messageHandler(eventData.key), "Close");
                 break;
-                case "log_message":
-                    addLog(messageHander(eventData.key));
+                case "important_message":
+                    addLog(messageHandler(eventData.key));
+                    openModal(messageHandler(eventData.key), "OK");
                 break;
                 case "damage":
                     addLog(messageHandler(eventData.key));
                     openModal(messageHandler(eventData.key), "Ouch!");
                     damageHP(10);
                 break;
-                case "speak" || "dialogue":
+                case "dialog":
                     toggleDialogueWindow(eventData.key);
                 break;
                 case "open":
@@ -253,12 +262,22 @@ export default function GameControl(){
                         break;
                     }
                 break;
+                case "battle":
+                    startBattle(eventData.key);
+                    addLog("You are waylaid by enemies!");
+                break;
+                case "listen":
+                    addLog(messageHandler(eventData.key));
+                break;
             }
             if(eventData.hook != ""){
                 setHook(eventData.hook);
             }
         } else {
-            addLog(eventData.failure);
+            if (eventData.failure != ""){
+                addLog(eventData.failure);
+            }
+            
         }
     }
 
@@ -288,36 +307,7 @@ export default function GameControl(){
     const [playerStats, changeStats] = useState(playerStatData[0]);
     const [currentHP, alterHP] = useState(playerStats.hp);
     const [currentMP, alterMP] = useState(playerStats.mp);
-    const changeHP = (value) => {
-        changeStats({...playerStats, hp:(playerStats.hp + value)});
-    }
-    const changeMP = (value) => {
-        changeStats({...playerStats, hp:(playerStats.MP + value)});
-    }
-    const changeHRT = (value) => {
-        changeStats({...playerStats, hp:(playerStats.HRT + value)});
-    }
-    const changeSTR = (value) => {
-        changeStats({...playerStats, hp:(playerStats.STR + value)});
-    }
-    const changeFCS = (value) => {
-        changeStats({...playerStats, hp:(playerStats.FCS + value)});
-    }
-    const changeBST = (value) => {
-        changeStats({...playerStats, hp:(playerStats.BST + value)});
-    }
-    const changeRFX = (value) => {
-        changeStats({...playerStats, hp:(playerStats.RFX + value)});
-    }
-    const changeATN = (value) => {
-        changeStats({...playerStats, hp:(playerStats.ATN + value)});
-    }
-    const changeSCM = (value) => {
-        changeStats({...playerStats, hp:(playerStats.SCM + value)});
-    }
-    const changeAGI = (value) => {
-        changeStats({...playerStats, hp:(playerStats.AGI + value)});
-    }
+    // TODO: Functions for setting stats based on equipment
     // These are specifically the current HP, as opposed to max.
     const damageHP = value => {
         alterHP(currentHP => (currentHP - value));
@@ -352,7 +342,11 @@ export default function GameControl(){
                 <button id="equip_menu">Equipment</button>
             </section>
             <section id="status">
-                <button id="status_menu">Status</button>
+                <button id="status_menu" onClick={()=>toggleStatusWindow()}>Status</button>
+                {statusOpen
+                ? < Stats stats={playerStats} currentHP={currentHP} currentMP = {currentMP} />
+                :   null
+                }
             </section>
             <div id="header_blur" className="blur"></div>
         </article>

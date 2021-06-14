@@ -61,22 +61,12 @@
     },
     {
       "id": 6,
-      "name": "Defend",
-      "element": "physical",
-      "formula": 2,
-      "target": "self",
-      "cost": 0,
-      "message": "defends!",
-      "description": "Defend yourself from physical harm."
-    },
-    {
-      "id": 7,
-      "name": "Flee",
-      "element": "physical",
-      "formula": 0,
-      "target": "self",
-      "cost": 0,
-      "message": "flees the battle!",
-      "description": "Run away and live to fight another day!"
+      "name": "Mag. Ray",
+      "element": "magical",
+      "formula": 5,
+      "target": "single",
+      "cost": 50,
+      "message": "fires a magnificent ray!",
+      "description": "Fires a ray of energy, 5x magical damage."
     }
-]
+  ]

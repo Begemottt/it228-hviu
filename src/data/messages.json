@@ -5,14 +5,22 @@
     },
     {
       "id": 1,
-      "text": "You trip on an uneven paving stone in the darkness."
+      "text": "You see something strange to the north...."
     },
     {
       "id": 2,
-      "text": "You see a figure to the south, somehow part of the wall...."
+      "text": "You feel uneasy as you traverse the strange winding hallways."
     },
     {
       "id": 3,
-      "text": "You see a figure to the west, somehow part of the wall...."
+      "text": "You hear a rumbling noise beyond the wall...."
+    },
+    {
+      "id": 4,
+      "text": "You trip on an uneven paving stone! Lost 10 HP...."
+    },
+    {
+      "id": 5,
+      "text": "You hear chittering to the north."
     }
   ]
