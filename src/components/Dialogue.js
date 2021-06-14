@@ -4,6 +4,7 @@
 // It will load up the main script file, and then the individual dialogue files as needed
 import React, { useState } from "react";
 import loadScript from "./loadScript";
+import anime from "animejs";
 
 export default function Dialogue (props){
     // This is the same as the hooks thing in the main 
@@ -15,6 +16,20 @@ export default function Dialogue (props){
         newValue.push(flag);
         changeflag(newValue);
     }
+    const [buttonBlur, setButtonBlur] = useState(false);
+    const turnOffButtons = () => {
+        setButtonBlur(()=>true);
+        let buttonObj = document.getElementById("buttons");
+    }
+    const turnOnButtons = () => {
+        setButtonBlur(()=>false);
+        anime({
+            targets: "#buttons",
+            translateX: [-500, 0],
+            easing: "easeOutElastic(1, .6)",
+            duration: 500
+        });
+    }
 
     // This keeps track of the current line number, which is updated as the scene goes on
     const [lineNumber, updateLineNumber] = useState(1);
@@ -24,7 +39,32 @@ export default function Dialogue (props){
     // State functions for the current message
     // Initializes at script line 0, which means it is not affected by logic in the advance function!
     // KEEP THAT IN MIND! ALWAYS START WITH A NORMAL MESSAGE!!
-    const [currentLine, updateLine] = useState(scriptData[(0)].text);
+    const [currentLine, changeCurrentLine] = useState(scriptData[(0)].text);
+    const updateLine = text => {
+        turnOffButtons();
+        let chars = Object.assign([], text);
+        changeCurrentLine("");
+        setTimeout(() => {
+            changeLine(chars);
+        }, 10);
+    }
+    const changeLine = (chars) => {
+        let text = "";
+        for (let i = 0; i < chars.length; i++){
+            setTimeout(() => {
+                text += chars[i];
+                changeCurrentLine(text);
+            }, 20 * i);
+        }
+        let timer = 20 * chars.length;
+        if (timer < 100){
+            timer = 100;
+        }
+        setTimeout(() => {
+            turnOnButtons();
+            console.log("Changing blur!");
+        }, 20 * chars.length);
+    }
     // This keeps track of what the buttons are
     const [buttons, updateButtons] = useState(new Array({text:"Next >", flag:"", hook:""}));
     const addButton = (newText, newFlag, newHook) => {
@@ -38,23 +78,28 @@ export default function Dialogue (props){
         newArray.shift();
         updateButtons(newArray);
     }
-    const resetButtons = () => {
-        updateButtons(new Array({text:"Next >", flag:""}));
+    const resetButtons = (hookValue) => {
+        updateButtons(oldvalues=>new Array({text:"Next >", flag:"", hook:""}));
     }
-    const handleButtonPress = (script, flag, hook) =>{
-        !flag
-        ? null
-        : setflag(flag);
-        !hook
-        ? null
-        : props.flipHook(hook);
+    const handleButtonPress = (script, flag) =>{
+        if(flag != ""){
+            setflag(flag);
+        }
         advance (script, flag);
+        anime({
+            targets: "#buttons",
+            translateX: [0, "100%"],
+            easing: "linear",
+            duration: 100
+        });
     }
 
     const advance = (script, flag) => {
         let thisLine = script[lineNumber];
         let nextLine = script[(lineNumber + 1)];
-
+        if (thisLine.type === "message"){
+            resetButtons();
+        }
         // If this line isn't the closing line, then we need to look ahead and see if we need to skip some lines because of flag requirements!
         if (thisLine.type != "close"){
             let lineSkip = 1;
@@ -73,6 +118,10 @@ export default function Dialogue (props){
         // If this line is a question, clear the next button so it doesn't appear alongside the options
         if (thisLine.type === "question"){
             clearButtons();
+        }
+        // Check for hooks
+        if (thisLine.hook != ""){
+            props.setHook(thisLine.hook);
         }
         // Big switch block for checking what to do with the current line!
         switch(thisLine.type){
@@ -111,7 +160,7 @@ export default function Dialogue (props){
                 </section>
                 <section id="buttons">
                     {buttons.map((buttonData, i) => (
-                        <button key={i} onClick={() => (handleButtonPress(scriptData, buttonData.flag, buttonData.hook))}>{buttonData.text}</button>
+                        <button key={i} onClick={() => (handleButtonPress(scriptData, buttonData.flag, buttonData.hook))} disabled={buttonBlur} >{buttonData.text}</button>
                     ))}
                 </section>
             </section>

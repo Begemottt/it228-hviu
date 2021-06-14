@@ -53,6 +53,7 @@ article#dialog{
         }
     }
     section#message{
+        overflow: hidden;
         z-index: 102;
         height: 80%;
         width: 50%;
@@ -100,6 +101,9 @@ article#dialog{
                     color: red;
                     background-color: $black;
                     border: 1px dotted red;
+                }
+                &:disabled{
+                    transform: translateX(50vw);
                 }
             }
         }

@@ -52,6 +52,16 @@ export default function Battle(props){
     }
     const triggerVictory = () => {
         changeOpenVictory(true);
+        setTimeout(() => {
+            let windowObj = document.getElementById("victory");
+            anime({
+                targets: windowObj,
+                top: ["200%","50%"],
+                duration: 1500,
+                easing: "easeOutElastic(1, .4)",
+                direction: "forwards"
+            })
+        }, 1);
     }
 
     // Random number function! It's useful, I swear
@@ -114,6 +124,15 @@ export default function Battle(props){
             duration: 100,
             easing: 'linear',
             direction: 'alternate'
+        });
+    }
+    const bounce = object => {
+        anime({
+            targets: object,
+            translateY: ["-100%",0],
+            duration: 1500,
+            easing: "easeOutElastic(1, .4)",
+            direction: "forwards"
         });
     }
     
@@ -288,6 +307,15 @@ export default function Battle(props){
         ? changeFarewell("You defeated " + enemies[0].name + " and cohort!")
         : changeFarewell("You defeated the " + enemies[0].name + "!")
         addBattleLog(greeting);
+
+        // Animation to move the battle window into place!
+        setTimeout(() => {
+            console.log("Animating!");
+            let windowObj = document.getElementById("battle_window")
+            bounce(windowObj);
+        }, 1);
+        
+        console.log("Ready!!");
     }
     let myReturn = <></>;
 

@@ -16,7 +16,7 @@ import Verbs from "./Verbs";
 import Modal from "./Modal";
 import Battle from "./Battle";
 import Loss from "./Loss";
-import Stats from "./Stats"
+import Stats from "./Stats";
 // [ Data ]
 import playerStatData from "../data/player_stats.json";
 
@@ -37,7 +37,9 @@ export default function GameControl(){
     const setHook = hook => {
         let newValue = hooks;
         newValue[hook] = !newValue[hook];
-        changeHook(oldvalues=>newValue);
+        setTimeout(() => {
+            changeHook(newValue);
+        }, 1);
     }
 
     // Functions for the log! Just toss a string into writeLog and it'll show up there.
@@ -111,6 +113,7 @@ export default function GameControl(){
     const [battleOpen, changeBattleOpen] = useState(false);
     const [battleID, changeBattleID] = useState(0);
     const startBattle = (id) => {
+        Blur("full");
         changeBattleOpen(!battleOpen);
         changeBattleID(id);
     }
@@ -394,7 +397,7 @@ export default function GameControl(){
         <article id="debug">
             <button onClick={()=> toggleDialogueWindow(1)}>Open Dialogue</button>
             <button onClick={()=> damageHP(100)}>Die</button>
-            <button onClick={()=> startBattle(0)}>Open Battle</button>
+            <button onClick={()=> startBattle(1)}>Battle!</button>
         </article>
         {/* Windows */}
         {logOpen
@@ -402,7 +405,7 @@ export default function GameControl(){
         : null
         }
         {dialogueOpen
-        ? < Dialogue scriptNumber={scriptNumber} closeDialog={toggleDialogueWindow} flipHook = {setHook} />
+        ? < Dialogue scriptNumber={scriptNumber} closeDialog={toggleDialogueWindow} setHook = {setHook} hooks={hooks} />
         : null
         }
         {messageOpen
